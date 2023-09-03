@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --wave-mobile: url(https://res.cloudinary.com/glovoapp/image/fetch/f_svg,q_auto:low/https://glovoapp.com/images/landing/waves/top-partners-wave-mobile.svg);
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.top-restaurants {
+  background-clip: padding-box;
+  border-bottom: 120px solid transparent;
+  border-image-slice: 0 0 120;
+  border-image-source: url(https://res.cloudinary.com/glovoapp/image/fetch/f_svg,q_auto:low/https://glovoapp.com/images/landing/waves/top-partners-wave-mobile.svg);
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+img {
+  max-width: 500%;
+}
+
+.scroll {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.scroll::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.rest-img {
+  mask-image: url(/images/partners-mask.svg);
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.countries {
+  background-clip: padding-box;
+  border-bottom: 55px solid transparent;
+  border-top: 75px solid transparent;
+  border-image-slice: 75 0 55;
+  border-image-source: url(/images/landing-links-waves-mobile.svg);
+  z-index: 30;
+}
+
+.do-it-together {
+  background-clip: padding-box;
+  border-top: 86px solid transparent;
+  border-image-slice: 86 0 0;
+  border-image-source: url(/images/corporate-wave-mobile.svg);
+}
+
+.footer {
+  background-clip: padding-box;
+  border-top: 74px solid transparent;
+  border-image-slice: 74 0 0;
+  border-image-source: url(/images/footer-wave-mobile.svg);
+}
