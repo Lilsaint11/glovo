@@ -1,5 +1,8 @@
+'use client';
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { useStore } from './store/zustand'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,9 +12,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const profileState = useStore(state => state.profileState)
+  const authModalState = useStore(state => state. authModalState)
+  const mapModalState =  useStore(state => state.mapModalState)
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${profileState && "overflow-hidden"} ${authModalState  && "overflow-hidden"} ${mapModalState && "overflow-hidden"}`}>{children}</body>
     </html>
   )
 }
