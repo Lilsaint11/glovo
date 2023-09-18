@@ -122,7 +122,7 @@ const Main = () => {
       </div>
       </div>
      
-      <div className="flex flex-col items-center justify-center gap-[75px] px-4 -mt-[48px]">
+      <div className="flex flex-col items-center justify-center gap-[75px] px-4 -mt-[48px] bg-white">
         <div className="flex flex-col justify-center items-center">
           <img src="/images/restaurants.svg" alt="" className="mb-[24px]"/>
           <h3 className="text-[20px] font-bold text-center mb-[8px]"> Your city's top restaurants</h3>
