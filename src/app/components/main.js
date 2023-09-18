@@ -52,6 +52,7 @@ const Main = () => {
         <div className='flex items-center justify-center'>
            <video data-test-id="animation-video" autoPlay="autoplay" loop="loop" muted="muted"  width="281" height="252" className="w-full max-w-[452px]" data-v-f4daae2a="" playsInline  muted><source src="https://res.cloudinary.com/glovoapp/video/upload/website_assets/images/landing/address-container-animation.webm" preload="auto" type="video/mp4" data-v-f4daae2a=""/>
            <img src="https://res.cloudinary.com/glovoapp/image/fetch/q_…ps://glovoapp.com/images/landing/video-burger.png" alt="" />
+           Could not play video
            </video>
         </div>
         <div className='flex flex-col items-center justify-center'>
