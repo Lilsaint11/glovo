@@ -71,7 +71,7 @@ const Main = () => {
       </div>
       {authModalState && <Signin />}
       {mapModalState && <MapModal /> }
-      <div className="flex flex-col items-center justify-center  px-4 py-[48px] bg-[#FFC244FF] address-open top-restaurants">
+      <div className="flex flex-col items-center justify-center w-full px-4 py-[48px] bg-[#FFC244FF] address-open top-restaurants">
         <h2 className="py-[32px] text-[32px] font-extrabold text-center leading-[1.2] "><span className="">Top restaurants and more </span>in Glovo</h2>
       <div className="scroll flex w-full max-w-[1500px] overflow-y-auto overflow-x-auto box-border ">
         <div className="flex flex-col items-center justify-center w-40" onClick={openMapModal}>

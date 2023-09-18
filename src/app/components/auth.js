@@ -72,7 +72,7 @@ const Signin = () => {
                 
                 provider: "github",
                 options: {
-                    redirectTo:`https://glovo-lilsaint11.vercel.app/}/auth/callback`,
+                    redirectTo:`${location.origin}/auth/callback`,
                 }
             })
             
@@ -88,7 +88,7 @@ const Signin = () => {
                 
                 provider: "google",
                 options: {
-                    redirectTo:`https://glovo-lilsaint11.vercel.app/auth/callback`,
+                    redirectTo:`${location.origin}/auth/callback`,
                 }
             })
             

@@ -27,8 +27,8 @@ body {
 
 .top-restaurants {
   background-clip: padding-box;
-  border-bottom: 120px solid transparent;
-  border-image-slice: 0 0 120;
+  border-bottom: 150px solid transparent;
+  border-image-slice: 100 50 120;
   border-image-source: url(https://res.cloudinary.com/glovoapp/image/fetch/f_svg,q_auto:low/https://glovoapp.com/images/landing/waves/top-partners-wave-mobile.svg);
 }
 
