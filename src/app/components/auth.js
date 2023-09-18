@@ -68,14 +68,16 @@ const Signin = () => {
     async function githubSignUp(e){
         e.preventDefault();
         try {
-            await supabase.auth.signInWithOAuth({
+           const data = await supabase.auth.signInWithOAuth({
                 
                 provider: "github",
                 options: {
                     redirectTo:`${location.origin}/auth/callback`,
                 }
             })
-            
+            if(data){
+                router.push("/home")
+                }
         } catch (error) {
             console.log(error)
         }
@@ -84,14 +86,16 @@ const Signin = () => {
     async function googleSignUp(e){
         e.preventDefault();
         try {
-            await supabase.auth.signInWithOAuth({
+           const data = await supabase.auth.signInWithOAuth({
                 
                 provider: "google",
                 options: {
                     redirectTo:`${location.origin}/auth/callback`,
                 }
             })
-            
+            if(data){
+                router.push("/home")
+                }
         } catch (error) {
             console.log(error)
         }
