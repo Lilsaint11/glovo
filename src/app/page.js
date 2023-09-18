@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
  
   return (
-    <main className='relative'>
+    <main className='relative text-black'>
       <Main />
       <DownloadTheApp />
       <DoItTogether />
