@@ -50,7 +50,7 @@ const Main = () => {
       </div>
       <div className='flex flex-col justify-center align-center bg-[#FFC244FF]  px-4 pt-[108px] pb-[24px]'>
         <div className='flex items-center justify-center'>
-           <video data-test-id="animation-video" autoPlay="autoplay" loop="loop" muted="muted"  width="281" height="252" className="w-full max-w-[452px]" data-v-f4daae2a=""><source src="https://res.cloudinary.com/glovoapp/video/upload/website_assets/images/landing/address-container-animation.webm" preload="auto" type="video/webm" data-v-f4daae2a=""/></video>
+           <video data-test-id="animation-video" autoPlay="autoplay" loop="loop" muted="muted"  width="281" height="252" className="w-full max-w-[452px]" data-v-f4daae2a=""><source src="https://res.cloudinary.com/glovoapp/video/upload/website_assets/images/landing/address-container-animation.webm" preload="auto" type="video/webm" data-v-f4daae2a="" playsInline/></video>
         </div>
         <div className='flex flex-col items-center justify-center'>
           <h3 className='text-[36px] font-bold text-center leading-[40px] py-[16px]'>Food delievery and more</h3>
