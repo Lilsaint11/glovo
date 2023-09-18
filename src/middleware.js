@@ -9,12 +9,7 @@ export async function middleware(req) {
   const {
     data: { session },
   } = await supabase.auth.getSession()
- // console.log(session,"test")
-  //const ik =  cookies().get(sb-rryzxsiguskbghfyohio-auth-token)
-  //console.log(ik)
-  let cookie = req.cookies["sb-refresh-token"];
 
-console.log(cookie)
   // if user is signed in and the current path is / redirect the user to /account
  if (session && req.nextUrl.pathname === '/') {
    return NextResponse.redirect(new URL('/home', req.url))
