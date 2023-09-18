@@ -107,6 +107,7 @@ const Signin = () => {
             })
             if(data.user != null){
                 router.push("/home")
+                closeAuthModal()
                 }else{
                     alert("invalid credentials")
                 }
@@ -119,13 +120,13 @@ const Signin = () => {
   
     
     return ( 
-        <div className="bg-[rgba(0,0,0,0.6)] fixed top-0 z-50 flex flex-col items-center w-full h-screen overflow-scroll sm:pt-20">
+        <div className="sm:bg-[rgba(0,0,0,0.6)] bg-white fixed top-0 z-50 flex flex-col items-center w-full h-screen overflow-scroll sm:pt-20">
             <div className="bg-white sm:rounded-xl">
                 <div className='p-[16px] mt-[16px] flex justify-end'>
                     <AiOutlineClose className=' text-[28px] text-[#6E6E6EFF] cursor-pointer' onClick={closeAuthModal }/>
                 </div>
                 {forgotPasswordPage ? (
-                <div className="sm:w-[600px] w-screen flex items-center  flex-col px-[34px] h-screen">
+                <div className="sm:w-[600px]: w-screen flex items-center  flex-col px-[34px] h-screen">
                     <h1 className="text-[20px] font-bold">Forgot your password?</h1>
                     <p className="text-[16px] font-light text-[#6E6E6EFF] mb-[24px] mt-[12px] text-center">Enter your email address to reset your password.</p>
                     <form action="" className='w-full'>

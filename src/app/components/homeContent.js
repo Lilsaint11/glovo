@@ -8,12 +8,12 @@ import DoItTogether from "./do-it-together";
 import Footer from "./footer";
 import Profile from "./profile";
 import { useStore } from "../store/zustand";
+import { useRouter } from "next/navigation";
 
-const HomeContent = () => {
+const HomeContent = ({user}) => {
     const [pageScrolled,setPageScrolled] = useState(false)
     const [addressState,setAddressState] = useState(false)
     const [divDistance,setDivDistance] = useState()
-    const [user,setUser] = useState()
     if (typeof window !== "undefined") {
     window.addEventListener("scroll", () =>{ 
         if(window.pageYOffset >= 15){

@@ -15,6 +15,7 @@ const Profile = () => {
     const closeProfile =  useStore(state => state.closeProfile)
     async function signOut(){
          await supabase.auth.signOut();
+         closeProfile()
          router.refresh()
     }
     return ( 
