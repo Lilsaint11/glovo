@@ -35,7 +35,7 @@ const HomeContent = () => {
     const openProfile =  useStore(state => state.openProfile)
       
     return ( 
-        <div className="text-black">
+        <div className="text-black bg-white">
         {profileState && <Profile />}
         <div className={`flex flex-col justify-center items-center bg-[#FFC244FF] fixed z-40 top-0 w-full ${pageScrolled && !addressState && "shadow-md"}`}>
             <div className="flex justify-between items-center gap-5 pt-[9px] pb-[13px] px-4 w-full">
