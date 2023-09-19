@@ -13,6 +13,8 @@ const Profile = () => {
     const router = useRouter()
     const [orderTab, setOrderTab] = useState(true);
     const closeProfile =  useStore(state => state.closeProfile)
+    const userName = useStore((state) => state.userName)
+    const userEmail = useStore((state) => state.userEmail)
     async function signOut(){
          await supabase.auth.signOut();
          closeProfile()
@@ -35,17 +37,17 @@ const Profile = () => {
                 </div>
                 ) : (
                 <div>
-                    <h1 className="font-bold text-[20px] mb-3">Hello, Stephen Obisesan</h1>
+                    <h1 className="font-bold text-[20px] mb-3">Hello, {userName}</h1>
                     <div className="flex flex-col gap-5">
                         <div className="flex border-b border-slate-300 w-full pb-5 justify-between">
                             <div className='flex flex-col gap-2'>
                                 <div>
                                     <p className='text-[13px] text-slate-600'>Name</p>
-                                    <p  className='text-[14px]'>Stephen  Obisesan</p>
+                                    <p  className='text-[14px]'>{userName}</p>
                                 </div>
                                 <div className="">
                                     <p className='text-[13px] text-slate-600'>Email</p>
-                                    <p className='text-[14px]'>example@gmail.com</p>
+                                    <p className='text-[14px]'>{userEmail}</p>
                                 </div>
                             </div>
                             <h4 className='text-green-700 font-bold text-[13px] cursor-pointer'>Edit</h4>
@@ -61,7 +63,7 @@ const Profile = () => {
                         <div className="flex justify-between border-b border-slate-300 w-full pb-5">
                             <div className='flex flex-col gap-2'>
                                 <p className='text-[13px] text-slate-600'>Password</p>
-                                <p className='text-[14px]'>Lorem ipsum password</p>
+                                <p className='text-[14px]'>Your password...</p>
                             </div>
                             <h4 className='text-green-700 font-bold text-[13px] cursor-pointer'>Edit</h4>
                         </div>

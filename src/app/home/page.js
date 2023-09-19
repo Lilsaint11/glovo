@@ -4,10 +4,12 @@ import { supabase } from "../auth/supabase";
 
 
 async function Home () {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
+  
+const { data: { user } } = await supabase.auth.getUser()
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log(event, session)
+})
+console.log(user,"ll")
     return ( 
        <HomeContent user={user}/>
      );

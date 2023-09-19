@@ -10,10 +10,13 @@ import Profile from "./profile";
 import { useStore } from "../store/zustand";
 import { useRouter } from "next/navigation";
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 const HomeContent = ({user}) => {
     const [pageScrolled,setPageScrolled] = useState(false)
     const [addressState,setAddressState] = useState(false)
     const [divDistance,setDivDistance] = useState()
+    const userName = useStore((state) => state.userName)
+    const supabase = createClientComponentClient()
     if (typeof window !== "undefined") {
     window.addEventListener("scroll", () =>{ 
         if(window.pageYOffset >= 15){
@@ -33,7 +36,18 @@ const HomeContent = ({user}) => {
 
     const profileState = useStore(state => state.profileState)
     const openProfile =  useStore(state => state.openProfile)
-      
+    const setUserName = useStore((state) => state.setUserName)
+    const setEmail = useStore((state) => state.setEmail)
+
+    useEffect(()=>{
+        const setData = async () =>{
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if(error) throw error;
+            setUserName(session.user.user_metadata.full_name)
+            setEmail(session.user.user_metadata.email)
+        }
+        setData();
+    },[])
     return ( 
         <div className="text-black bg-white">
         {profileState && <Profile />}
@@ -51,7 +65,7 @@ const HomeContent = ({user}) => {
             </div>
         </div>
         <div className="bg-[#FFC244FF] pt-4 mt-[99px] flex flex-col justify-center items-center w-full">
-        <h1 className="mb-5 text-[18px]">Delivering to <span className="font-bold">Stephen Obisesan</span></h1>
+        <h1 className="mb-5 text-[18px]">Delivering to <span className="font-bold">{userName}</span></h1>
             <div className="h-[400px]  w-[370px] relative px-4 justify-between gap-y-2">
                 <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[120px] h-[125px] bubble shadow shadow-3xl shadow-slate-500 absolute top-[120px] left-[120px] cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/CategoryGroups/fchiknlbp7i6ujd7sgva" alt="" className="w-[50px] h-[45px]"/>

@@ -13,8 +13,10 @@ const Signin = () => {
     const router = useRouter()
     const supabase = createClientComponentClient()
     const closeAuthModal =  useStore(state => state.closeAuthModal)
+    const [fullname,setFullname] = useState();
     const [showPassword,setShowPassword] = useState(false);
     const [signupTab,setSignupTab] = useState(true);
+    const [session,setSession] = useState();
     const [forgotPasswordPage,setForgotPasswordPage] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -111,14 +113,12 @@ const Signin = () => {
                 }else{
                     alert("invalid credentials")
                 }
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
         
     }
-  
-    
+
     return ( 
         <div className="sm:bg-[rgba(0,0,0,0.6)] bg-white fixed top-0 z-50 flex flex-col items-center w-full h-screen overflow-scroll sm:pt-20">
             <div className="bg-white sm:rounded-xl">

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   const mapModalState =  useStore(state => state.mapModalState)
   return (
     <html lang="en">
-      <body className={`${profileState && "overflow-hidden"} ${authModalState  && "overflow-hidden"} ${mapModalState && "overflow-hidden"}`}>{children}</body>
+      <body className={`${profileState && "overflow-hidden"} ${authModalState  && "overflow-hidden"} ${mapModalState && "overflow-hidden"} bg-white`}>{children}</body>
     </html>
   )
 }

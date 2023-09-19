@@ -27,6 +27,7 @@ const MapModal = () => {
                 lng: location.coords.longitude
                 };
                 setCenter(center)
+                console.log(location)
         });
      },[location]);
 
