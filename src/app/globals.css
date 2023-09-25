@@ -32,6 +32,13 @@ body {
   border-image-source: url(https://res.cloudinary.com/glovoapp/image/fetch/f_svg,q_auto:low/https://glovoapp.com/images/landing/waves/top-partners-wave-mobile.svg);
 }
 
+.jumbotron {
+  background-clip: padding-box;
+  border-bottom: 74px solid transparent;
+  border-image-slice: 0 0 74;
+  border-image-source: url(/images/address-jumbotron-wave-desktop.svg);
+}
+
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none;

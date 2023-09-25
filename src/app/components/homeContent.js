@@ -66,36 +66,36 @@ const HomeContent = ({user}) => {
         </div>
         <div className="bg-[#FFC244FF] pt-4 mt-[99px] flex flex-col justify-center items-center w-full">
         <h1 className="mb-5 text-[18px]">Delivering to <span className="font-bold">{userName}</span></h1>
-            <div className="h-[400px]  w-[370px] relative px-4 justify-between gap-y-2">
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[120px] h-[125px] bubble shadow shadow-3xl shadow-slate-500 absolute top-[120px] left-[120px] cursor-pointer">
+            <div className="max-md:h-[400px]  max-md:w-[370px] md:grid md:grid-cols-4 md:gap-5 lg:flex relative px-4 justify-between gap-y-2">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[120px] h-[125px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute top-[120px] left-[120px] cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/CategoryGroups/fchiknlbp7i6ujd7sgva" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light w-10">Food</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute bottom-4 left-[130px] cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute bottom-4 left-[130px] cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/axauagpboui8jtksyx7a" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Glovo Bargains</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute bottom-[50px] left-0 cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute bottom-[50px] left-0 cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/CategoryGroups/iteu1doia24conodac8e" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Supermarket and Phamarcies</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute top-[100px] left-0 cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500  max-md:absolute top-[100px] left-0 cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/d1895kzyk7jiinhykem2" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Chicken Republic 30% Off</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute top-0 left-[70px] cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute top-0 left-[70px] cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/lubnleu9eskm0dslityl" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Package Delivery</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute top-0 right-[60px] cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute top-0 right-[60px] cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/ke0kz2c4pq1hzikvvuge" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Shoprite</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute top-[110px] right-0 cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute top-[110px] right-0 cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/ykq8cyazxethdnv5qbc9" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Coca-Cola Treats</p>
                 </div>
-                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 absolute bottom-[50px] right-0 cursor-pointer">
+                <div className="bg-white w-[114px] flex flex-col justify-center items-center w-[110px] h-[112px] bubble shadow shadow-3xl shadow-slate-500 max-md:absolute bottom-[50px] right-0 cursor-pointer">
                     <img src="https://res.cloudinary.com/glovoapp/c_fit,f_auto,e_trim,q_auto:best,h_120,w_120/StoreCategories/z5hwcvps81kwipdtilfw" alt="" className="w-[50px] h-[45px]"/>
                     <p className="text-center text-[12px] font-light">Glovomania</p>
                 </div>
