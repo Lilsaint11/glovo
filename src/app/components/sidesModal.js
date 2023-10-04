@@ -10,8 +10,8 @@ export default function SidesModal() {
   const router = useRouter();
   const sidesModalState = useStore(state => state. sidesModalState)
   const closeSidesModal =  useStore(state => state.closeSidesModal)
-  //]const cart =  useStore(state => state.cart)
-  const setCart =  useStore(state => state.setCart)
+  const cart =  useStore(state => state.cart)
+  const setCart =  useStore((state) => state.setCart)
   const sideMenu =  useStore(state => state.sideMenu)
   const [itemPrice,setItemPrice] = useState(sideMenu.price)
   const [itemAmt,setItemAmt] = useState(1)
@@ -35,13 +35,15 @@ export default function SidesModal() {
    }
 
     function addToCart(){
-        let cart = []
-        //setCart({...sideMenu,price:totalPrice})
+        let carti = []
+       // cart = {...sideMenu,price:totalPrice}
         if(typeof localStorage !== "undefined") {
-            cart  = JSON.parse(localStorage.getItem('cart')) || []
+            carti = (JSON.parse(localStorage.getItem('cart'))) || []
         }
-        cart.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
-        localStorage.setItem('cart', JSON.stringify(cart))
+        carti.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
+        setCart(carti)
+        console.log(cart)
+        localStorage.setItem('cart', JSON.stringify(carti))
         closeSidesModal()
     }
    
@@ -120,7 +122,7 @@ useEffect(()=>{
                         <h1>{itemAmt}</h1>
                         <h1 className="text-[#00A082FF] w-[32px] h-[32px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer" onClick={increaseItem}>+</h1>
                     </div>
-                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={addToCart}>Add 1 for NGN{totalPrice}</button>
+                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={ addToCart}>Add 1 for NGN{totalPrice}</button>
                 </div>
             </div>
         </div>

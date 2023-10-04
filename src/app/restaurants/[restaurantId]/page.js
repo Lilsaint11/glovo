@@ -19,8 +19,9 @@ const Restaurant = () => {
     const {restaurantId} = useParams();
     const[restaurantMeals,setRestaurantMeals] = useState()
     const [restaurantData, setRestaurantData] = useState({ });
+    // const setCart =  useStore((state) => state.setCart)
+    //const cart =  useStore((state) => state.cart)
     const [cart,setCart] =  useState([])
-    const [cart2,setCart2] =  useState([])
     const [num,setNum] =  useState()
 
     const sidesModalState = useStore(state => state.sidesModalState)
@@ -76,6 +77,7 @@ const Restaurant = () => {
 
     useEffect(()=>{   
         getCart()
+        console.log(cart)
         return;
     },[])
 
@@ -112,7 +114,7 @@ const Restaurant = () => {
             <div className="flex gap-5 h-screen p-10 -mt-28 relative">
                <div className="w-full flex flex-col gap-10">
                    <div className="flex flex-col gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-full p-10">
-                       <h1 className="text-[48px] font-bold">{restaurantData.name}</h1>
+                       <h1 className="text-[48px] font-bold max-[380px]:text-[40px]">{restaurantData.name}</h1>
                        <div className="flex items-center gap-2">
                         {restaurantData.delivery ? 
                         <div className="flex items-center gap-1">
@@ -132,7 +134,7 @@ const Restaurant = () => {
                        </div>
                    </div>
                    <div className="flex">
-                        <div className="overflow-auto sticky left-0 top-6 w-72 h-screen scroll-bar">
+                        <div className="overflow-auto sticky left-0 top-6 w-72 h-screen scroll-bar max-sm:hidden">
                             <div className="flex items-center  gap-1 mx-[16px]">
                                 <img src="https://res.cloudinary.com/glovoapp/image/fetch/f_svg,q_auto:low/https://glovoapp.com/images/svg/sections-square.svg" alt="" />
                                 <h3 className="text-[14px] font-bold text-[#00A082FF]">Sections</h3>
@@ -186,8 +188,8 @@ const Restaurant = () => {
                         </div>
                    </div>
                </div>
-               <div className="sticky top-6 h-[15rem]">
-                   <div className="flex flex-col items-center gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-[322px] px-5 pt-10 pb-5">
+               <div className="sticky top-6 h-[15rem] max-sm:hidden">
+                   <div className="h-96 flex flex-col items-center gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-[322px] px-5 pt-10 pb-5">
                         <h1 className="font-bold text-[28px]">Your Glovo</h1>
                         {cart? 
                         <div className="flex flex-col gap-5">
@@ -204,7 +206,7 @@ const Restaurant = () => {
                                     </div>
                                 </div>
                             ))}
-                            
+                            <Link href="/checkout"><button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add 1 for NGN5400</button></Link>
                         </div> :
                         <>
                         <img src="/images/astronaut-grey-scale.svg" alt="" />
@@ -214,6 +216,7 @@ const Restaurant = () => {
                    </div>
                </div>
             </div>
+            <Link href="/checkout"><button className={`fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add 1 for NGN5400</button></Link>
         </div>
      );
 }
