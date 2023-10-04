@@ -146,3 +146,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}

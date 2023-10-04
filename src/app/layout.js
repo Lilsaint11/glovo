@@ -15,9 +15,10 @@ export default function RootLayout({ children }) {
   const profileState = useStore(state => state.profileState)
   const authModalState = useStore(state => state. authModalState)
   const mapModalState =  useStore(state => state.mapModalState)
+  const sidesModalState = useStore(state => state.sidesModalState)
   return (
     <html lang="en">
-      <body className={`${profileState && "overflow-hidden"} ${authModalState  && "overflow-hidden"} ${mapModalState && "overflow-hidden"} bg-white`}>{children}</body>
+      <body className={`${profileState && "overflow-hidden"} ${authModalState  && "overflow-hidden"} ${mapModalState && "overflow-hidden"} ${sidesModalState && "overflow-hidden"} bg-white`}>{children}</body>
     </html>
   )
 }

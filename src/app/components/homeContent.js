@@ -11,9 +11,12 @@ import { useStore } from "../store/zustand";
 import { useRouter } from "next/navigation";
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import RestaurantCard from "./restaurantCard";
 const HomeContent = ({user}) => {
     const [pageScrolled,setPageScrolled] = useState(false)
     const [addressState,setAddressState] = useState(false)
+    const [restaurants,setRestaurants] = useState(null)
+    const [fetchErr, setFetchErr] = useState(null)
     const [divDistance,setDivDistance] = useState()
     const userName = useStore((state) => state.userName)
     const supabase = createClientComponentClient()
@@ -33,6 +36,26 @@ const HomeContent = ({user}) => {
         setAddressState(false)
       }
     },[divDistance])
+
+    useEffect(()=>{
+        const fetchItems = async () => {
+            const {data, error} = await supabase
+            .from('restaurants')
+            .select()
+
+            if(error){
+                setFetchErr('could not fetch items')
+                setRestaurants(null)
+                console.log(error)
+            }
+            if(data){
+                setRestaurants(data)
+                setFetchErr(null)
+                console.log(data)
+            }
+        }
+        fetchItems();
+    },[])
 
     const profileState = useStore(state => state.profileState)
     const openProfile =  useStore(state => state.openProfile)
@@ -107,138 +130,9 @@ const HomeContent = ({user}) => {
                 <h3 className="text-[20px] font-bold">Stores you might like</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-2 sm:gap-10 ">
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/rovvz2vyxhg40df9ukqd')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Chicken</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Chicken Republic</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>87% <span className="visible max-sm:hidden text-[#6E6E6EFF]">(500+)</span></p>
-                            <div className="bg-[#FFC244FF] px-1 rounded-md flex items-center gap-1">
-                                <MdOutlineDeliveryDining className="text-[20px]"/>
-                                <p className="text-[14px] font-bold">Promo</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/q9r2jcfixbu4afoyhhwk')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Chicken</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">The Place</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>94% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(500+)</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/zgfzkunbb4mzoz2wkhar')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Burgers</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">KFC</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>88% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(54)</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/dv4eiceevy6lgrtt8esx')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Chicken</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Sweet Sentation</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>86% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(500+)</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/chn0omd7saylfgwdsrk5')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Chicken</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Debonairs Pizza</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>80% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(216)</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/m4llzywxk1jfrmk0khoy')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[77px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Supermarket</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Glovo Bargains Supermarket</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>93% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(500+)</span></p>
-                            <div className="bg-[#FFC244FF] px-1 rounded-md flex items-center gap-1">
-                                <MdOutlineDeliveryDining className="text-[20px]"/>
-                                <p className="text-[14px] font-bold">Promo</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/hfzy0pve165xi8e1yc46')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Alcohol</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Shoprite</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] fcnt-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>87% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(500+)</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full max-w-[260px] cursor-pointer">
-                    <div className="rounded-lg bg-black">
-                        <div className="w-full bg-[url('https://res.cloudinary.com/glovoapp/q_30,f_auto,c_fill,h_250,w_450/Stores/idyv8tpdzaltdu07ismw')] bg-no-repeat h-[122px] bg-cover rounded-lg hover:scale-105 transition duration-200">
-                            <div className="flex flex-col justify-end h-full p-[8px]">
-                                <h4 className="bg-[rgba(0,0,0,0.6)] w-[54px] text-[12px] font-light flex justify-center items-center text-white rounded-md">Burgers</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="m-2">
-                        <h2 className="text-[16px] sm:text-[20px] font-bold mb-2">Burger King</h2>
-                        <div className="flex gap-2">
-                            <p className="text-[16px] font-light flex items-center gap-1"><HiOutlineThumbUp className="text-[18px]"/>92% <span className="text-[#6E6E6EFF] visible max-sm:hidden">(500+)</span></p>
-                            <div className="bg-[#FFC244FF] px-1 rounded-md flex items-center gap-1">
-                                <MdOutlineDeliveryDining className="text-[20px]"/>
-                                <p className="text-[14px] font-bold">Promo</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {restaurants && restaurants.map(restaurant => (
+                    <Link href={"/restaurants/" + restaurant.id}><RestaurantCard  key={restaurant.id} restaurant={restaurant} /></Link>
+                ))}
             </div>
         </div>
         <div className="px-3 sm:px-12 w-full mt-16">
