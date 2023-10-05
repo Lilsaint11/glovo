@@ -2,7 +2,7 @@
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AiOutlineClose,AiOutlineLock,AiFillCloseCircle } from 'react-icons/ai';
+import { AiOutlineClose} from 'react-icons/ai';
 import { useStore } from "../store/zustand";
 
 export default function SidesModal() {
@@ -10,16 +10,11 @@ export default function SidesModal() {
   const router = useRouter();
   const sidesModalState = useStore(state => state. sidesModalState)
   const closeSidesModal =  useStore(state => state.closeSidesModal)
-  const cart =  useStore(state => state.cart)
-  const setCart =  useStore((state) => state.setCart)
   const sideMenu =  useStore(state => state.sideMenu)
   const [itemPrice,setItemPrice] = useState(sideMenu.price)
   const [itemAmt,setItemAmt] = useState(1)
   const [totalPrice,setTotalPrice] = useState(itemPrice)
   const [sidesState,setSidesState] = useState(true)
-  //const [totalCount,setTotalCount] = useState(0)
-  //const setTotalCount= useStore(state => state.setTotalCount)
-  //const totalCount= useStore(state => state.totalCount)
 
   useEffect(()=>{
     if(!sideMenu.drinks && ! sideMenu.size && !sideMenu.chicken_choice){
@@ -39,20 +34,17 @@ export default function SidesModal() {
    let totalCount = 0;
    let totalCartPrice = 0
     function addToCart(){
-        let carti = []
-        
-       // cart = {...sideMenu,price:totalPrice}
+        let cart = []
         if(typeof localStorage !== "undefined") {
-            carti = (JSON.parse(localStorage.getItem('cart'))) || []
+            cart = (JSON.parse(localStorage.getItem('cart'))) || []
             totalCount = (JSON.parse(localStorage.getItem('totalCount'))) || 0
             totalCartPrice = (JSON.parse(localStorage.getItem('totalCartPrice'))) || 0
         }
-        carti.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
+        cart.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
         totalCount += itemAmt
         totalCartPrice += totalPrice
         console.log(totalCount,"asdfgh")
-        setCart(carti)
-        localStorage.setItem('cart', JSON.stringify(carti))
+        localStorage.setItem('cart', JSON.stringify(cart))
         localStorage.setItem('totalCount', JSON.stringify(totalCount))
         localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice))
         closeSidesModal()

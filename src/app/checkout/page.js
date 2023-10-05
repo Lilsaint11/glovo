@@ -1,5 +1,4 @@
 "use client"
-import { useStore } from "@/app/store/zustand";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from 'react-icons/fi';

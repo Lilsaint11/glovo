@@ -1,11 +1,8 @@
 "use client"
 import { useParams, useRouter } from "next/navigation";
-import {BsPersonCircle } from 'react-icons/bs';
 import { MdOutlineDeliveryDining } from 'react-icons/md';
 import { HiOutlineThumbUp } from 'react-icons/hi';
 import {IoIosArrowForward } from 'react-icons/io';
-import {RxDashboard } from 'react-icons/rx';
-import {FcTodoList } from 'react-icons/fc';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { supabase } from "@/app/auth/supabase";
@@ -19,8 +16,6 @@ const Restaurant = () => {
     const {restaurantId} = useParams();
     const[restaurantMeals,setRestaurantMeals] = useState()
     const [restaurantData, setRestaurantData] = useState({ });
-    // const setCart =  useStore((state) => state.setCart)
-    //const cart =  useStore((state) => state.cart)
     const [cart,setCart] =  useState([])
     const [num,setNum] =  useState()
     const [totalCount,setTotalCount] = useState(0)
@@ -79,19 +74,95 @@ const Restaurant = () => {
     }
    
     let z=JSON.parse(localStorage.getItem('totalCount'))
+    console.log(z)
 
     useEffect(()=>{   
         getCart()
         console.log(cart)
+        console.log(z)
         return;
-    },[z])
+    },[z,num])
 
   
-    function increaseItem(item){
-        console.log(item)
+    function increaseItem(itemToUpdate){
+        // Retrieve the array from local storage
+        const storedArray = JSON.parse(localStorage.getItem('cart'));
+        let storeTotalCount = JSON.parse(localStorage.getItem('totalCount'));
+        let totalCartPrice = JSON.parse(localStorage.getItem('totalCartPrice'));
+
+        // Modify the array (for example, update an item)
+        const updatedArray = storedArray.map((item) => {
+        if (item.name === itemToUpdate) {
+            // Make the desired changes to the item
+            let itemAmt = item.itemAmt
+            let basePrice = item.price/item.itemAmt;
+            let newPrice;
+            storeTotalCount += 1
+            itemAmt += 1
+            newPrice = basePrice * itemAmt;
+            totalCartPrice += basePrice
+            return {
+            ...item,
+            // Update the property you want to change
+            itemAmt: itemAmt,
+            price: newPrice,
+            };
+          
+        }
+        return item;
+        });
+
+        // Save the modified array back to local storage
+        localStorage.setItem('cart', JSON.stringify(updatedArray));
+        localStorage.setItem('totalCount', JSON.stringify(storeTotalCount));
+        localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice));
+        setNum(storeTotalCount);
     }
   
-    function decreaseItem(){
+    function decreaseItem(itemToUpdate){
+        // Retrieve the array from local storage
+        const storedArray = JSON.parse(localStorage.getItem('cart'));
+        let storeTotalCount = JSON.parse(localStorage.getItem('totalCount'));
+        let totalCartPrice = JSON.parse(localStorage.getItem('totalCartPrice'));
+        let newArray
+        let deleteState = false
+
+        // Modify the array (for example, update an item)
+        const updatedArray = storedArray.map((item) => {
+        if (item.name === itemToUpdate) {
+            // Make the desired changes to the item
+            let itemAmt = item.itemAmt
+            let basePrice = item.price/item.itemAmt;
+            let newPrice = item.price;
+            storeTotalCount -= 1
+            totalCartPrice -= basePrice
+            if(itemAmt>1){
+                itemAmt -= 1
+                newPrice = basePrice * itemAmt;
+            }else{
+                deleteState = true;
+                newArray = storedArray.filter((item) => item.name !== itemToUpdate);
+            }
+            return {
+            ...item,
+            // Update the property you want to change
+            itemAmt: itemAmt,
+            price: newPrice,
+            };
+          
+        }
+        return item;
+        });
+
+        // Save the modified array back to local storage
+        if(deleteState){
+            localStorage.setItem('cart', JSON.stringify(newArray));
+        }else{
+            localStorage.setItem('cart', JSON.stringify(updatedArray));
+        }
+        localStorage.setItem('totalCount', JSON.stringify(storeTotalCount));
+        localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice));
+        setNum(storeTotalCount);
        
      }
     
@@ -196,17 +267,17 @@ const Restaurant = () => {
                <div className="sticky top-6 h-[15rem] max-sm:hidden relative">
                    <div className="h-96 flex flex-col items-center gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-[322px] px-5 pt-10 pb-5 relative">
                         <h1 className="font-bold text-[28px]">Your Glovo</h1>
-                        {cart? 
-                        <div className="flex flex-col gap-5  overflow-y-scroll">
+                        {(cart && cart.length>0)? 
+                        <div className="flex flex-col gap-5  overflow-y-scroll pb-10">
                             {cart.map((ct)=>(
                                 <div className="flex flex-col gap-5">
-                                    <div className="flex items-center justify-between gap-5">
+                                    <div className="flex items-center justify-between gap-5 w-full">
                                         <h1 className="font-bold">{ct.itemAmt}x</h1>
                                         <h2 className="max-w-[150px] text-[14px]">{ct.name}</h2>
                                         <h3 className="text-[14px]">NGN {ct.price}</h3>
                                     </div>
                                     <div className="flex items-center justify-between gap-5 font-bold text-[20px]">
-                                        <h1 className="w-[24px] h-[24px] text-[24px] font-semibold rounded-full  text-[#00A082FF] bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer pb-1"  onClick={decreaseItem}>-</h1>
+                                        <h1 className="w-[24px] h-[24px] text-[24px] font-semibold rounded-full  text-[#00A082FF] bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer pb-1"  onClick={()=>decreaseItem(ct.name)}>-</h1>
                                         <h1 className="text-[#00A082FF] w-[24px] h-[24px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer"  onClick={()=>increaseItem(ct.name)}>+</h1>
                                     </div>
                                 </div>

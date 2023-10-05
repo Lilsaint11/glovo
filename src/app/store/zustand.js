@@ -7,8 +7,6 @@ export const useStore = create((set) => ({
     sideMenu: "",
     userName:"",
     userEmail:"",
-    cart:[],
-    totalCount:0,
     openProfile: () => set({profileState: true}),
     closeProfile: () => set({profileState: false}),
     openAuthModal: () => set({authModalState: true}),
@@ -20,8 +18,4 @@ export const useStore = create((set) => ({
     setUserName:(userName) => set(() => ({ userName: userName })),
     setEmail:(userEmail) => set(() => ({ userEmail: userEmail })),
     setSideMenu:(sideMenu) => set(() => ({ sideMenu: sideMenu })),
-    setCart:(newItem) => set((state) => ({cart:  [...state.cart,newItem] })),
-    removeFromCart: (productId) =>
-    set((state) => ({ cart: state.cart.filter((item) => item.id !== productId) })),
-    setTotalCount: (count) => set((state) => ({ totalCount: (state.totalCount + count)}))
 }))
