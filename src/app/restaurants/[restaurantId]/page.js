@@ -168,7 +168,7 @@ const Restaurant = () => {
     
 
     return ( 
-        <div>
+        <div className="bg-white text-black">
             {sidesModalState && <SidesModal />}
             <div className="w-full relative">
                 <img src={restaurantData.image} alt="" className="w-full h-64 object-cover blur-sm"/>
@@ -189,8 +189,8 @@ const Restaurant = () => {
             </div>
             <div className="flex gap-5 h-screen p-10 -mt-28 relative">
                <div className="w-full flex flex-col gap-10">
-                   <div className="flex flex-col gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-full p-10">
-                       <h1 className="text-[48px] font-bold max-[380px]:text-[40px]">{restaurantData.name}</h1>
+                   <div className="flex flex-col gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-full p-10 max-sm:p-5">
+                       <h1 className="text-[48px] font-bold max-sm:text-[40px]">{restaurantData.name}</h1>
                        <div className="flex items-center gap-2">
                         {restaurantData.delivery ? 
                         <div className="flex items-center gap-1">

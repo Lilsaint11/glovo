@@ -55,18 +55,18 @@ useEffect(()=>{
 },[itemAmt])
 
   return (
-    <div className="">
+    <div className="relative z-50">
         <Modal
           isOpen={sidesModalState}
           onRequestClose={closeSidesModal}
-          className="w-[900px]  absolute top-10 left-[50%] translate-x-[-50%] bg-white rounded-xl shadow-md z-40"
+          className="overflow-scroll w-[900px] max-[900px]:w-[600px] max-sm:w-screen h-full max-sm:h-screen absolute top-10 left-[50%] translate-x-[-50%] bg-white rounded-xl shadow-md z-50"
         >
         <div className="p-10 w-full">
-            <div className="flex w-full justify-end mb-5 cursor-pointer" onClick={closeSidesModal}>
+            <div className="flex w-full justify-end sm:mb-5 mb-3 cursor-pointer" onClick={closeSidesModal}>
                 < AiOutlineClose />
             </div>
-            <div className="flex gap-10 w-full">
-                {sidesState && <div className={`w-[60%] h-[350px] overflow-scroll flex flex-col gap-5`}>
+            <div className="flex max-sm:flex-col max-sm:flex-col-reverse gap-10 w-full">
+                {sidesState && <div className={`sm:w-[60%] sm:h-[350px] overflow-scroll flex flex-col gap-5`}>
                 {sideMenu.size &&
                  <div>
                     <h1 className="font-bold text-[20px]">Select size?</h1>
@@ -115,17 +115,17 @@ useEffect(()=>{
                 </div>}
                 <div className={`${sidesState && "w-[40%]"} w-full flex flex-col gap-2`}>
                     <div className="flex items-center justify-center">
-                        <img src={sideMenu.image} alt="" className={`${!sidesState && "w-64 h-96"}w-40 h-40 object-cover`}/>
+                        <img src={sideMenu.image} alt="" className={`${!sidesState && "w-64 h-96"}w-40 h-40 max-sm:w-80 h-80 object-cover`}/>
                     </div>
-                    <h1 className={`${!sidesState && "text-[28px]"} font-bold text-[20px]`}>{sideMenu.name}</h1>
-                    <h3 className={`${!sidesState && "text-[24px]"} font-medium text-[18px]`}>₦{sideMenu.price}</h3>
-                    <p className={`${!sidesState && "text-[18px]"} font-medium text-[14px] text-[#6E6E6EFF]`}>{sideMenu.desc}</p>
-                    <div className="flex items-center justify-center gap-5 font-bold text-[20px]">
+                    <h1 className={`${!sidesState && "text-[28px]"} font-bold text-[20px] max-sm:text-[24px]`}>{sideMenu.name}</h1>
+                    <h3 className={`${!sidesState && "text-[24px]"} font-medium text-[18px] max-sm:text-[20px]`}>₦{sideMenu.price}</h3>
+                    <p className={`${!sidesState && "text-[18px]"} font-medium text-[14px] text-[#6E6E6EFF] max-sm:text-[16px]`}>{sideMenu.desc}</p>
+                    <div className="flex items-center justify-center gap-5 max-sm:gap-10 font-bold text-[20px] max-sm:my-5">
                         <h1 className={` w-[32px] h-[32px] text-[24px] font-semibold rounded-full bg-[#C1C1C1FF] flex justify-center items-center cursor-pointer pb-1 ${(itemAmt > 1) ? " text-[#00A082FF] bg-[#E9F8F5FF]" : "text-slate-500"}`}  onClick={decreaseItem}>-</h1>
                         <h1>{itemAmt}</h1>
                         <h1 className="text-[#00A082FF] w-[32px] h-[32px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer" onClick={increaseItem}>+</h1>
                     </div>
-                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={ addToCart}>Add 1 for NGN{totalPrice}</button>
+                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={ addToCart}>Add {itemAmt} for NGN{totalPrice}</button>
                 </div>
             </div>
         </div>
