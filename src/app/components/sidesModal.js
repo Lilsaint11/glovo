@@ -17,6 +17,9 @@ export default function SidesModal() {
   const [itemAmt,setItemAmt] = useState(1)
   const [totalPrice,setTotalPrice] = useState(itemPrice)
   const [sidesState,setSidesState] = useState(true)
+  //const [totalCount,setTotalCount] = useState(0)
+  //const setTotalCount= useStore(state => state.setTotalCount)
+  //const totalCount= useStore(state => state.totalCount)
 
   useEffect(()=>{
     if(!sideMenu.drinks && ! sideMenu.size && !sideMenu.chicken_choice){
@@ -33,17 +36,25 @@ export default function SidesModal() {
         setItemAmt(Number(itemAmt) - 1)
       }
    }
-
+   let totalCount = 0;
+   let totalCartPrice = 0
     function addToCart(){
         let carti = []
+        
        // cart = {...sideMenu,price:totalPrice}
         if(typeof localStorage !== "undefined") {
             carti = (JSON.parse(localStorage.getItem('cart'))) || []
+            totalCount = (JSON.parse(localStorage.getItem('totalCount'))) || 0
+            totalCartPrice = (JSON.parse(localStorage.getItem('totalCartPrice'))) || 0
         }
         carti.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
+        totalCount += itemAmt
+        totalCartPrice += totalPrice
+        console.log(totalCount,"asdfgh")
         setCart(carti)
-        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(carti))
+        localStorage.setItem('totalCount', JSON.stringify(totalCount))
+        localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice))
         closeSidesModal()
     }
    

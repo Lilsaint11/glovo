@@ -6,6 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 const Checkout = () => {
     const [cart,setCart] =  useState([])
+    const [totalCartPrice,setTotalCartPrice] = useState(0)
     const getCart = () => {
         if(typeof localStorage !== "undefined") {
              setCart(JSON.parse(localStorage.getItem('cart'))) || []
@@ -18,6 +19,14 @@ const Checkout = () => {
         console.log(cart)
         return;
     },[])
+
+    useEffect(()=>{  
+        if(typeof localStorage !== "undefined") {
+        setTotalCartPrice(JSON.parse(localStorage.getItem('totalCartPrice'))) || []
+        }
+    },[])
+
+    let total = totalCartPrice + 50
     return ( 
         <div className="py-10 px-20 max-[780px]:px-10">
             <img src="/images/logo.svg" alt="" className='w-[128px] mb-10'/>
@@ -49,7 +58,7 @@ const Checkout = () => {
                    <span className="relative h-[1px] w-full bg-slate-300"></span>
                    <div className="flex items-center justify-between text-[18px]">
                        <h1 className="">Products</h1>
-                       <h1>₦4,083.75</h1>
+                       <h1>₦{totalCartPrice}</h1>
                    </div>
                    <div className="flex items-center justify-between text-[18px]">
                        <h1 className="">Delivery</h1>
@@ -61,7 +70,7 @@ const Checkout = () => {
                    </div>
                    <div className="flex items-center justify-between text-[20px] font-bold">
                        <h1 className="">TOTAL</h1>
-                       <h1>₦4,133.75</h1>
+                       <h1>₦{total}</h1>
                    </div>
                    <div className="flex items-center justify-between gap-3">
                        <input type="checkbox" name="" id="" className="w-5 h-5 cursor-pointer"/>

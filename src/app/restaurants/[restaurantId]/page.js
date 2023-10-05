@@ -23,7 +23,8 @@ const Restaurant = () => {
     //const cart =  useStore((state) => state.cart)
     const [cart,setCart] =  useState([])
     const [num,setNum] =  useState()
-
+    const [totalCount,setTotalCount] = useState(0)
+    const [totalCartPrice,setTotalCartPrice] = useState(0)
     const sidesModalState = useStore(state => state.sidesModalState)
     useEffect(()=>{
         const fetchItems = async () => {
@@ -67,23 +68,27 @@ const Restaurant = () => {
         }
         fetchRes();
     },[restaurantData])
-
+    
     const getCart = () => {
         if(typeof localStorage !== "undefined") {
              setCart(JSON.parse(localStorage.getItem('cart'))) || []
+             setTotalCount(JSON.parse(localStorage.getItem('totalCount'))) || []
+             setTotalCartPrice(JSON.parse(localStorage.getItem('totalCartPrice'))) || []
         }
         return;
     }
+   
+    let z=JSON.parse(localStorage.getItem('totalCount'))
 
     useEffect(()=>{   
         getCart()
         console.log(cart)
         return;
-    },[])
+    },[z])
 
   
     function increaseItem(item){
-        
+        console.log(item)
     }
   
     function decreaseItem(){
@@ -188,11 +193,11 @@ const Restaurant = () => {
                         </div>
                    </div>
                </div>
-               <div className="sticky top-6 h-[15rem] max-sm:hidden">
-                   <div className="h-96 flex flex-col items-center gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-[322px] px-5 pt-10 pb-5">
+               <div className="sticky top-6 h-[15rem] max-sm:hidden relative">
+                   <div className="h-96 flex flex-col items-center gap-5 bg-white rounded-md shadow-md shadow-slate-200 w-[322px] px-5 pt-10 pb-5 relative">
                         <h1 className="font-bold text-[28px]">Your Glovo</h1>
                         {cart? 
-                        <div className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-5  overflow-y-scroll">
                             {cart.map((ct)=>(
                                 <div className="flex flex-col gap-5">
                                     <div className="flex items-center justify-between gap-5">
@@ -202,11 +207,11 @@ const Restaurant = () => {
                                     </div>
                                     <div className="flex items-center justify-between gap-5 font-bold text-[20px]">
                                         <h1 className="w-[24px] h-[24px] text-[24px] font-semibold rounded-full  text-[#00A082FF] bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer pb-1"  onClick={decreaseItem}>-</h1>
-                                        <h1 className="text-[#00A082FF] w-[24px] h-[24px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer">+</h1>
+                                        <h1 className="text-[#00A082FF] w-[24px] h-[24px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer"  onClick={()=>increaseItem(ct.name)}>+</h1>
                                     </div>
                                 </div>
                             ))}
-                            <Link href="/checkout"><button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add 1 for NGN5400</button></Link>
+                           {totalCount && <Link href="/checkout"><button className={`absolute bottom-3 left-0 text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add {totalCount} for NGN{totalCartPrice}</button></Link>}
                         </div> :
                         <>
                         <img src="/images/astronaut-grey-scale.svg" alt="" />
@@ -216,7 +221,7 @@ const Restaurant = () => {
                    </div>
                </div>
             </div>
-            <Link href="/checkout"><button className={`fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add 1 for NGN5400</button></Link>
+            {totalCount && <Link href="/checkout"><button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] " >Add {totalCount}  for NGN{totalCartPrice}</button></Link>}
         </div>
      );
 }

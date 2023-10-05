@@ -8,6 +8,7 @@ export const useStore = create((set) => ({
     userName:"",
     userEmail:"",
     cart:[],
+    totalCount:0,
     openProfile: () => set({profileState: true}),
     closeProfile: () => set({profileState: false}),
     openAuthModal: () => set({authModalState: true}),
@@ -22,4 +23,5 @@ export const useStore = create((set) => ({
     setCart:(newItem) => set((state) => ({cart:  [...state.cart,newItem] })),
     removeFromCart: (productId) =>
     set((state) => ({ cart: state.cart.filter((item) => item.id !== productId) })),
+    setTotalCount: (count) => set((state) => ({ totalCount: (state.totalCount + count)}))
 }))
