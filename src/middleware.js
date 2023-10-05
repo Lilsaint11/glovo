@@ -16,7 +16,7 @@ export async function middleware(req) {
    return NextResponse.redirect(new URL('/home', req.url))
   }
 
-  if (!session && req.nextUrl.pathname === '/home') {
+  if (!session && (req.nextUrl.pathname.startsWith('/home') || req.nextUrl.pathname.startsWith('/restaurants') || req.nextUrl.pathname.startsWith('/checkout'))) {
     return NextResponse.redirect(new URL('/', req.url))
    }
 
@@ -24,5 +24,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/','/home'],
+  matcher: ['/','/home','/checkout','/restaurants/:path*'],
 }

@@ -9,6 +9,7 @@ import { supabase } from "@/app/auth/supabase";
 import RestaurantMealCard from "@/app/components/restaurantMealCard";
 import SidesModal from "@/app/components/sidesModal";
 import { useStore } from "@/app/store/zustand";
+import Profile from "@/app/components/profile";
 
 
 const Restaurant = () => {
@@ -21,6 +22,8 @@ const Restaurant = () => {
     const [totalCount,setTotalCount] = useState(0)
     const [totalCartPrice,setTotalCartPrice] = useState(0)
     const sidesModalState = useStore(state => state.sidesModalState)
+    const profileState = useStore(state => state.profileState)
+    const openProfile =  useStore(state => state.openProfile)
     useEffect(()=>{
         const fetchItems = async () => {
             const {data, error} = await supabase
@@ -169,6 +172,7 @@ const Restaurant = () => {
 
     return ( 
         <div className="bg-white text-black">
+            {profileState &&< Profile />}
             {sidesModalState && <SidesModal />}
             <div className="w-full relative">
                 <img src={restaurantData.image} alt="" className="w-full h-64 object-cover blur-sm"/>
@@ -176,12 +180,12 @@ const Restaurant = () => {
                     <div className="flex justify-between">
                         <img src="/images/glovo-white.svg" alt="" className='w-[128px]'/>
                         <div className="flex items-center gap-5">
-                            <img src="/images/profile-icon_new.svg" alt="" className="cursor-pointer w-10"/>
-                            <img src="/images/orders-icon_new.svg" alt="" className="w-10 cursor-pointer"/>
+                            <img src="/images/profile-icon_new.svg" alt="" className="cursor-pointer w-10" onClick={openProfile}/>
+                            <img src="/images/orders-icon_new.svg" alt="" className="w-10 cursor-pointer" onClick={openProfile}/>
                         </div>
                     </div>
                     <div className="flex items-center text-white gap-2 text-[12px]">
-                        <Link href="/home"><p className="relative z-40">Home</p></Link>
+                        <Link href="/home"><p className="relative ">Home</p></Link>
                         <IoIosArrowForward />
                         <p className="font-bold">{restaurantData.name}</p>
                     </div>

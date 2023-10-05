@@ -40,6 +40,7 @@ export default function SidesModal() {
             totalCount = (JSON.parse(localStorage.getItem('totalCount'))) || 0
             totalCartPrice = (JSON.parse(localStorage.getItem('totalCartPrice'))) || 0
         }
+        
         cart.push({...sideMenu, price:totalPrice,itemAmt:itemAmt})
         totalCount += itemAmt
         totalCartPrice += totalPrice
@@ -55,18 +56,18 @@ useEffect(()=>{
 },[itemAmt])
 
   return (
-    <div className="relative z-50">
+    <div className="relative z-40">
         <Modal
           isOpen={sidesModalState}
           onRequestClose={closeSidesModal}
-          className="overflow-scroll w-[900px] max-[900px]:w-[600px] max-sm:w-screen h-full max-sm:h-screen absolute top-10 left-[50%] translate-x-[-50%] bg-white rounded-xl shadow-md z-50"
+          className="overflow-scroll w-[900px] max-[900px]:w-[600px] max-sm:w-screen h-full max-sm:h-screen absolute top-10 max-sm:top-0 left-[50%] translate-x-[-50%] bg-white rounded-xl shadow-md z-50"
         >
         <div className="p-10 w-full text-black">
             <div className="flex w-full justify-end sm:mb-5 mb-3 cursor-pointer" onClick={closeSidesModal}>
                 < AiOutlineClose />
             </div>
             <div className="flex max-sm:flex-col max-sm:flex-col-reverse gap-10 w-full">
-                {sidesState && <div className={`sm:w-[60%] sm:h-[350px] overflow-scroll flex flex-col gap-5`}>
+                {sidesState && <div className={`sm:w-[60%] h-full sm:h-[350px] overflow-scroll flex flex-col gap-5`}>
                 {sideMenu.size &&
                  <div>
                     <h1 className="font-bold text-[20px]">Select size?</h1>
@@ -115,7 +116,7 @@ useEffect(()=>{
                 </div>}
                 <div className={`${sidesState && "w-[40%]"} w-full flex flex-col gap-2`}>
                     <div className="flex items-center justify-center">
-                        <img src={sideMenu.image} alt="" className={`${!sidesState && "w-64 h-96"}w-40 h-40 max-sm:w-80 h-80 object-cover`}/>
+                        <img src={sideMenu.image} alt="" className={`${!sidesState && "w-64 h-96"}w-40 h-40 max-sm:w-64 h-64 object-cover`}/>
                     </div>
                     <h1 className={`${!sidesState && "text-[28px]"} font-bold text-[20px] max-sm:text-[24px]`}>{sideMenu.name}</h1>
                     <h3 className={`${!sidesState && "text-[24px]"} font-medium text-[18px] max-sm:text-[20px]`}>₦{sideMenu.price}</h3>
