@@ -251,7 +251,7 @@ const Restaurant = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-3 pb-20">
                             <div className="flex items-center gap-3">
                                 <img src="/images/cup.webp" alt="" className="w-9"/>
                                 <h1 className="text-[20px] font-bold">Top sellers</h1>
@@ -282,7 +282,7 @@ const Restaurant = () => {
                                     </div>
                                 </div>
                             ))}
-                           {totalCount && <Link href="/checkout"><button className={`absolute bottom-3 left-0 text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Add {totalCount} for NGN{totalCartPrice}</button></Link>}
+                           {totalCount && <Link href="/checkout"><button className={`absolute bottom-3 left-0 text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Order {totalCount} for NGN{totalCartPrice}</button></Link>}
                         </div> :
                         <>
                         <img src="/images/astronaut-grey-scale.svg" alt="" />
@@ -292,7 +292,7 @@ const Restaurant = () => {
                    </div>
                </div>
             </div>
-            {totalCount && <Link href="/checkout"><button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] " >Add {totalCount}  for NGN{totalCartPrice}</button></Link>}
+            {totalCount && <Link href="/checkout"><button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] " >Order {totalCount}  for NGN{totalCartPrice}</button></Link>}
         </div>
      );
 }

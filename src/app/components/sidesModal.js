@@ -61,7 +61,7 @@ useEffect(()=>{
           onRequestClose={closeSidesModal}
           className="overflow-scroll w-[900px] max-[900px]:w-[600px] max-sm:w-screen h-full max-sm:h-screen absolute top-10 left-[50%] translate-x-[-50%] bg-white rounded-xl shadow-md z-50"
         >
-        <div className="p-10 w-full">
+        <div className="p-10 w-full text-black">
             <div className="flex w-full justify-end sm:mb-5 mb-3 cursor-pointer" onClick={closeSidesModal}>
                 < AiOutlineClose />
             </div>

@@ -27,7 +27,7 @@ const Checkout = () => {
 
     let total = totalCartPrice + 50
     return ( 
-        <div className="py-10 px-20 max-[780px]:px-10">
+        <div className="py-10 px-20 max-[780px]:px-10 bg-white text-black">
             <img src="/images/logo.svg" alt="" className='w-[128px] mb-10'/>
             <div className="mb-5 flex items-center gap-2">
                 <Link href="/home"><FiArrowLeft className="text-[20px] cursor-pointer"/></Link>
