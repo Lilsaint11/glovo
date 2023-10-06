@@ -296,7 +296,7 @@ const Restaurant = () => {
                    </div>
                </div>
             </div>
-            {totalCount && <Link href="/checkout"><button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] " >Order {totalCount}  for NGN{totalCartPrice}</button></Link>}
+            {totalCount && <button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] "  onClick={()=>increaseItem(ct.name)} >Order {totalCount}  for NGN{totalCartPrice}</button>}
         </div>
      );
 }
