@@ -116,9 +116,9 @@ const Restaurant = () => {
         });
 
         // Save the modified array back to local storage
-        localStorage.setItem('cart', JSON.stringify(updatedArray));
-        localStorage.setItem('totalCount', JSON.stringify(storeTotalCount));
-        localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice));
+        localStorage.setItem('cart', JSON.stringify([]));
+        localStorage.setItem('totalCount', JSON.stringify(0));
+        localStorage.setItem('totalCartPrice', JSON.stringify(0));
         setNum(storeTotalCount);
     }
   
