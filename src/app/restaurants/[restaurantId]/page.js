@@ -116,9 +116,9 @@ const Restaurant = () => {
         });
 
         // Save the modified array back to local storage
-        localStorage.setItem('cart', JSON.stringify([]));
-        localStorage.setItem('totalCount', JSON.stringify(0));
-        localStorage.setItem('totalCartPrice', JSON.stringify(0));
+        localStorage.setItem('cart', JSON.stringify([updatedArray]));
+        localStorage.setItem('totalCount', JSON.stringify(storeTotalCount));
+        localStorage.setItem('totalCartPrice', JSON.stringify(totalCartPrice));
         setNum(storeTotalCount);
     }
   
@@ -296,7 +296,7 @@ const Restaurant = () => {
                    </div>
                </div>
             </div>
-            {totalCount && <button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] "  onClick={()=>increaseItem("Mega Deal - Asun Rice Combo")} >Order {totalCount}  for NGN{totalCartPrice}</button>}
+            {totalCount && <Link href="/checkout"><button className="fixed bottom-5 sm:hidden text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF] " >Order {totalCount}  for NGN{totalCartPrice}</button></Link>}
         </div>
      );
 }
