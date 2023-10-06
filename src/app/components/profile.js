@@ -21,7 +21,7 @@ const Profile = () => {
          router.refresh()
     }
     return ( 
-        <div className="w-full h-full bg-white absolute top-0 z-50 py-3 px-5 overflow-scroll">
+        <div className="w-full h-full bg-white fixed top-0 z-50 py-3 px-5 overflow-scroll">
             <div>
                 <div className='p-[4px] mt-[2px] flex justify-end' onClick={closeProfile}>
                     <AiOutlineClose className=' text-[18px] text-[#6E6E6EFF] cursor-pointer'/>
