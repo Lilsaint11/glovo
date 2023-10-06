@@ -3,12 +3,40 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from 'react-icons/fi';
+import { PaystackButton } from "react-paystack"
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 const Checkout = () => {
     const router = useRouter()
+    const supabase = createClientComponentClient()
     const [cart,setCart] =  useState([])
     const [totalCartPrice,setTotalCartPrice] = useState(0)
     const [num,setNum] =  useState()
+    const [email, setEmail] = useState("")
+    
+    useEffect(()=>{
+        const setData = async () =>{
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if(error) throw error;
+            setEmail(session.user.user_metadata.email)
+        }
+        setData();
+    },[])
+      const publicKey = process.env. NEXT_PUBLIC__PAYSTACK_PUBLIC_KEY
+      const amount =(totalCartPrice + 50)* 100
+      const componentProps = {
+        email,
+        amount,
+        publicKey,
+        metadata: {
+           cart
+          },
+        text: "Confirm order",
+        onSuccess: () =>
+          alert("Washere!!,Thanks for doing business with us!,we love your funds, Come back soon!!"),
+        onClose: () => alert("Senior man you no wan spend this money? until hunger kill you?"),
+      }
+
     const getCart = () => {
         if(typeof localStorage !== "undefined") {
              setCart(JSON.parse(localStorage.getItem('cart'))) || []
@@ -161,7 +189,7 @@ const Checkout = () => {
                        <input type="checkbox" name="" id="" className="w-5 h-5 cursor-pointer"/>
                        <p className="text-[12px] text-[#6E6E6EFF]">I confirm that i'm of legal age to purchase these products</p>
                    </div>
-                   <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} >Confirm order</button>
+                   <PaystackButton {...componentProps} className="text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]"/>
                </div>
            </div>
         </div>

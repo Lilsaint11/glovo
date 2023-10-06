@@ -33,7 +33,7 @@ export default function SidesModal() {
    }
    let totalCount = 0;
    let totalCartPrice = 0
-    function addToCart(){
+    function addToCart(itemToUpdate){
         let cart = []
         if(typeof localStorage !== "undefined") {
             cart = (JSON.parse(localStorage.getItem('cart'))) || []
@@ -126,7 +126,7 @@ useEffect(()=>{
                         <h1>{itemAmt}</h1>
                         <h1 className="text-[#00A082FF] w-[32px] h-[32px] text-[24px] font-semibold rounded-full bg-[#E9F8F5FF] flex justify-center items-center cursor-pointer" onClick={increaseItem}>+</h1>
                     </div>
-                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={ addToCart}>Add {itemAmt} for NGN{totalPrice}</button>
+                    <button className={`text-white w-full h-12 rounded-full font-semibold bg-[#00A082FF]`} onClick={()=> addToCart(sideMenu.name)}>Add {itemAmt} for NGN{totalPrice}</button>
                 </div>
             </div>
         </div>

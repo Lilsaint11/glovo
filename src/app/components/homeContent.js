@@ -1,14 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { HiOutlineLocationMarker,HiOutlineThumbUp } from 'react-icons/hi';
-import { MdOutlineDeliveryDining } from 'react-icons/md';
 import {BsPersonCircle } from 'react-icons/bs';
 import Link from "next/link";
 import DoItTogether from "./do-it-together";
 import Footer from "./footer";
 import Profile from "./profile";
 import { useStore } from "../store/zustand";
-import { useRouter } from "next/navigation";
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import RestaurantCard from "./restaurantCard";
